@@ -48,7 +48,7 @@ button.navbar-item{
 }
 .navbar-item.is-tab:hover {
   background-color: transparent;
-  border-bottom-color: #39beaa;
+  border-bottom-color: rgb(0, 209, 178);
 
 }
 a.navbar-item:hover{
@@ -70,3 +70,43 @@ a.navbar-item:hover{
   a.is-muted:hover{
   	color: $grey;
   }
+  .menu-list a:hover {
+  background-color: whitesmoke;
+  color: rgb(0, 209, 178);
+}
+.pagination-previous,
+.pagination-next,
+.pagination-link {
+  border-color: #dbdbdb;
+  color: rgb(0, 209, 178);
+  min-width: 2.25em;
+}
+.pagination-previous:hover,
+.pagination-next:hover,
+.pagination-link:hover {
+  border-color: rgb(0, 209, 178);
+  color: #363636;
+}
+.pagination-link.is-current {
+  background-color: rgb(0, 209, 178);
+  border-color: rgb(0, 209, 178);
+  color: #fff;
+}
+.input{
+  background-color: white;
+  border-color: #dbdbdb;
+  color: #363636;
+  -webkit-box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+          box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  max-width: 100%;
+  width: 100%;
+}
+.input:hover{
+	border-color: rgb(0, 209, 178);
+}
+.input:focus{
+	border-color: rgb(0, 209, 178);
+}
+.input:active{
+	border-color: rgb(0, 209, 178);
+}

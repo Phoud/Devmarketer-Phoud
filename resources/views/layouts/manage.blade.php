@@ -10,8 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -21,11 +19,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="apphome">
-             @include('_include.nav.navbar')
+    @include('_include.nav.navbar')
+    @include('_include.nav.manage')
+    <div class="management-area" id="app">
+            
              @yield('content')
+
+        
         </div>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    
+    @yield('scripts')
 </body>
 </html>
