@@ -30,7 +30,9 @@
 				<th>{{ $user->name }}</th>
 				<th>{{ $user->email }}</th>
 				<th>{{ $user->created_at->toFormattedDateString() }}</th>
-				<th><a href="{{ route('users.edit', $user->id) }}" class="button is-outlined">Edit</a></th>
+				<th>
+					<a href="{{ route('users.show', $user->id) }}" class="button is-outlined">View</a>
+					<a href="{{ route('users.edit', $user->id) }}" class="button is-outlined">Edit</a></th>
 			</tr>
 			@endforeach
 		</tbody>

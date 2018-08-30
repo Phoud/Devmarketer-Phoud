@@ -26,7 +26,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('manage.roles.create');
+        $permissions = Permission::all();
+        return view('manage.roles.create', compact('permissions'));
     }
 
     /**
@@ -37,7 +38,24 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+        'display_name' => 'required|max:255',
+        'name' => 'required|max:100|alpha_dash|unique:permissions,name',
+        'description' => 'sometimes|max:255'
+      ]);
+
+      $role = new Role();
+      $role->display_name = $request->display_name;
+      $role->name = $request->name;
+      $role->description = $request->description;
+      $role->save();
+
+      if ($request->permissions) {
+        $role->syncPermissions(explode(',', $request->permissions));
+      }
+
+      Session::flash('success', 'Successfully created the new '. $role->display_name . ' role in the database.');
+      return redirect()->route('roles.show', $role->id);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use DB;
 use Session;
 use Hash;
@@ -74,14 +75,15 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('id', $id)->with('roles')->first();
         return view('manage.users.show', compact('user'));
     }
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('manage.users.edit', compact('user'));
+      $roles = Role::all();
+      $user = User::where('id', $id)->with('roles')->first();
+      return view("manage.users.edit")->withUser($user)->withRoles($roles);
     }
 
     public function update(Request $request, $id)
@@ -110,12 +112,17 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        if ($user->save()) {
-            return redirect()->route('users.show', $id);
-        }else{
-            Session::flash('error', 'Sorry! Cannot edit the user. Please try again later');
-            return redirect()->route('users.edit', $id);
-        }
+
+    $user->save();
+
+      $user->syncRoles(explode(',', $request->roles));
+      return redirect()->route('users.show', $id);
+        // if ($user->save()) {
+        //     return redirect()->route('users.show', $id);
+        // }else{
+        //     Session::flash('error', 'Sorry! Cannot edit the user. Please try again later');
+        //     return redirect()->route('users.edit', $id);
+        // }
     }
 
     public function destroy($id)

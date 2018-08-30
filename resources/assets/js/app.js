@@ -7,6 +7,7 @@ import Buefy from 'buefy'
 
 Vue.use(Buefy);
 
+require ('./manage')
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 

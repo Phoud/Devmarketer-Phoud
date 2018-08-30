@@ -967,7 +967,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(40);
 
 
 /***/ }),
@@ -986,6 +986,8 @@ window.Vue = __webpack_require__(35);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
+
+__webpack_require__(39);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
@@ -43233,6 +43235,31 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+var accordions = document.getElementsByClassName('has-submenu');
+
+for (var i = 0; i < accordions.length; i++) {
+  accordions[i].onclick = function () {
+    this.classList.toggle('is-active');
+
+    var submenu = this.nextElementSibling;
+    if (submenu.style.maxHeight) {
+      // menu is open, we need to close it now
+      submenu.style.maxHeight = null;
+      submenu.style.marginTop = null;
+      submenu.style.marginBottom = null;
+    } else {
+      // meny is close, so we need to open it
+      submenu.style.maxHeight = submenu.scrollHeight + "px";
+      submenu.style.marginTop = "0.75em";
+      submenu.style.marginBottom = "0.75em";
+    }
+  };
+}
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
